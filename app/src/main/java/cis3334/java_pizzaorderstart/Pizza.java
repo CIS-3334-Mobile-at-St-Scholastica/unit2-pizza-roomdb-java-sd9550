@@ -2,6 +2,7 @@ package cis3334.java_pizzaorderstart;
 
 /***
  *  Details for a single pizza
+ *  Stefan D CIS 3334
  */
 public class Pizza {
     final Double[] PIZZA_PRICES = {7.99, 9.99, 12.99, 14.99};
