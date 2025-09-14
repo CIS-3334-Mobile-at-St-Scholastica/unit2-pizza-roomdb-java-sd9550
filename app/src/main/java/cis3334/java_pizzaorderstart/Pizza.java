@@ -1,13 +1,17 @@
 package cis3334.java_pizzaorderstart;
-
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 /***
  *  Details for a single pizza
  *  Stefan D CIS 3334
  */
+@Entity
 public class Pizza {
-    final Double[] PIZZA_PRICES = {7.99, 9.99, 12.99, 14.99};
-    final String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
-
+    final static Double[] PIZZA_PRICES = {7.99, 9.99, 12.99, 14.99};
+    final static String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
+    @PrimaryKey(autoGenerate = true)
+    long id;
     private String topping;
     private Double price;
     private Integer size;        // size of the pizza as an integer -- sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
@@ -31,8 +35,60 @@ public class Pizza {
         return price;
     }
 
+    @NonNull
     public String toString() {
         return description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStrSize() {
+        return strSize;
+    }
+
+    public void setStrSize(String strSize) {
+        this.strSize = strSize;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getTopping() {
+        return topping;
+    }
+
+    public void setTopping(String topping) {
+        this.topping = topping;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String[] getPIZZA_SIZES() {
+        return PIZZA_SIZES;
+    }
+
+    public Double[] getPIZZA_PRICES() {
+        return PIZZA_PRICES;
+    }
 }

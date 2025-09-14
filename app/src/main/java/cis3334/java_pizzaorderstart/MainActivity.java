@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewSize;
     EditText textOrder;
     Integer pizzaSize = 1;     // Pizza sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
+    private boolean isInitialLoad = true;
     final String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
     MainViewModel mainViewModel;
     @Override
@@ -39,6 +40,36 @@ public class MainActivity extends AppCompatActivity {
         chipPepperoni = findViewById(R.id.chipPepperoni);
         chipChicken = findViewById(R.id.chipChicken);
         chipGreenPepper = findViewById(R.id.chipGreenPeppers);
+
+        mainViewModel.getOrder().observe(this, pizzas -> {
+            Log.d("CIS 3334", "LiveData observer fired.");
+
+            if (isInitialLoad) {
+                // This is the first time the data is loaded.
+                // Just update the text and flip the flag.
+                StringBuilder orderDescription = new StringBuilder();
+                for (Pizza p : pizzas) {
+                    orderDescription.append(p.toString()).append("\n");
+                }
+                textOrder.setText(orderDescription.toString());
+
+                isInitialLoad = false; // <-- The initial load is now complete.
+                Log.d("CIS 3334", "Initial data loaded.");
+
+            } else {
+                // This is a subsequent update (e.g., a new pizza was added).
+                // You can add special actions here if you want.
+                StringBuilder orderDescription = new StringBuilder();
+                for (Pizza p : pizzas) {
+                    orderDescription.append(p.toString()).append("\n");
+                }
+                textOrder.setText(orderDescription.toString());
+
+                // Example: Show a toast only for new updates
+                // Toast.makeText(MainActivity.this, "Your order has been updated!", Toast.LENGTH_SHORT).show();
+                Log.d("CIS 3334", "Order updated.");
+            }
+        });
 
         /***
          *   Handle SeekBar changes
@@ -64,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("CIS 3334", "Place order button clicked");   // log button click for debugging using "CIS 3334" tag
+                mainViewModel.placeOrder();
             }
         });
 
@@ -74,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mainViewModel.placeOrder(getToppings(),pizzaSize);
-                String order = mainViewModel.getOrder();
-                textOrder.setText(order);
+                //String order = mainViewModel.getOrder();
+                //textOrder.setText(order);
                 Log.d("CIS 3334", "Add To Order button clicked");   // log button click for debugging using "CIS 3334" tag
             }
         });
