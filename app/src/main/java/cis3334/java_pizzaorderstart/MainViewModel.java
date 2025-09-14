@@ -30,18 +30,9 @@ public class MainViewModel extends AndroidViewModel {
         pizzaRepository.OrderPizza(newPizza);
     }
 
-    // Get the order as a string
-//    public String getOrder() {
-//        StringBuilder orderDescription = new StringBuilder();
-//        List<String> pizzaList = myPizzaOrder.getOrder();
-//        if (pizzaList != null) {
-//            for (String strPizza:pizzaList ) {
-//                orderDescription.append(strPizza).append("\n");
-//            }
-//        }
-//
-//        return orderDescription.toString();
-//    }
+    public void resetOrder() {
+        pizzaRepository.ResetOrder();
+    }
 
     public LiveData<List<Pizza>> getOrder() {
         return allPizzas;

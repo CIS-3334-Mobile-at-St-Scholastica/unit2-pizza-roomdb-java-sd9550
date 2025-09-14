@@ -6,7 +6,7 @@ import java.util.List;
 public class PizzaOrder {
     public static final Double DELIVERY_PRICE = 2.50;
 
-    private List<Pizza> pizzasInOrder;          // list of pizzas ordered so far
+    private final List<Pizza> pizzasInOrder;          // list of pizzas ordered so far
     private boolean delivery=false;             // true if customer wants order delivered
 
     /***

@@ -16,9 +16,12 @@ public interface PizzaDao {
     @Query("SELECT * FROM Pizza WHERE id = :Id")
     Pizza getByIds(int Id);
 
+    @Query("DELETE FROM Pizza")
+    void deleteAll();
+
     @Insert
     void insert(Pizza pizza);
 
     @Delete
-    void delete(Pizza pizza);
+    void delete(List<Pizza> pizza);
 }
