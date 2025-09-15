@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey;
  *  Details for a single pizza
  *  Stefan D CIS 3334
  */
-@Entity
+@Entity(tableName = "Pizza")
 public class Pizza {
-    final static Double[] PIZZA_PRICES = {7.99, 9.99, 12.99, 14.99};
-    final static String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
     @PrimaryKey(autoGenerate = true)
     long id;
+    final static Double[] PIZZA_PRICES = {7.99, 9.99, 12.99, 14.99};
+    final static String[] PIZZA_SIZES = {"Small","Medium","Large","X-Large"};
     private String topping;
     private Double price;
     private Integer size;        // size of the pizza as an integer -- sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
@@ -21,7 +21,7 @@ public class Pizza {
     /***
      *  Constructor
      * @param topping - this is a string listing all the toppings
-     * @param size - thisis the size of the pizza -- sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
+     * @param size - this is the size of the pizza -- sizes are 0=Small, 1=Medium, 2=Large, 3=X-large
      */
     public Pizza(String topping, Integer size) {
         this.topping = topping;

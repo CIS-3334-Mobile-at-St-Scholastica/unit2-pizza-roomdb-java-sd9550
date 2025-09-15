@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("CIS 3334", "LiveData observer fired.");
 
             StringBuilder orderDescription = new StringBuilder();
-            if (isInitialLoad) {
+            if (isInitialLoad) { // initial load to test LiveData
                 for (Pizza p : pizzas) {
                     orderDescription.append(p.toString()).append("\n");
                 }
@@ -83,14 +83,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {     }
         });
-
+        // place order button click listener
         buttonPlaceOrder.setOnClickListener(v -> {
             Log.d("CIS 3334", "Place order button clicked");   // log button click for debugging
             mainViewModel.resetOrder();
             textViewPlaceOrder.setText(String.format("%s", "Order Placed!"));
             buttonPlaceOrder.setVisibility(View.INVISIBLE);
         });
-
+        // add button click listener
         buttonAddToOrder.setOnClickListener(v -> {
             textViewPlaceOrder.setText(String.format("%s", ""));
             mainViewModel.placeOrder(getToppings(),pizzaSize);
